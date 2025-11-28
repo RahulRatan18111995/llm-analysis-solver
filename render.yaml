@@ -5,12 +5,18 @@ services:
     region: oregon
     branch: main
     repo: https://github.com/RahulRatan18111995/llm-analysis-solver
+
     buildCommand: |
+      pip install --upgrade pip
       pip install -r requirements.txt
-      playwright install --with-deps chromium
+
     startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+
     envVars:
       - key: SECRET_KEY
         sync: false
       - key: AIPIPE_TOKEN
         sync: false
+
+    autoDeploy: true
+    healthCheckPath: /health
