@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: rahul-llm-solver
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      playwright install --with-deps chromium
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: SECRET_KEY
+        value: "YOUR_SECRET"
+      - key: AIPIPE_TOKEN
+        value: "YOUR_AIPIPE_TOKEN"
