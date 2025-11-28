@@ -1,0 +1,9 @@
+{
+  "timeout": 30000,
+  "use": {
+    "headless": true,
+    "bypassCSP": true,
+    "ignoreHTTPSErrors": true
+  },
+  "webServer": null
+}
