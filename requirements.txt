@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+httpx
+pandas
+pdfplumber
+beautifulsoup4
+playwright   # optional — if you want headless browser DOM execution
+openpyxl
+reportlab
+pillow
