@@ -131,29 +131,8 @@ def clean_url(url: str) -> str:
     return url
 
 def verify_secret(email: str, secret: str) -> bool:
-    if SECRET_MAP_JSON:
-        try:
-            smap = json.loads(SECRET_MAP_JSON)
-            if isinstance(smap, dict):
-                return smap.get(email) == secret
-        except Exception:
-            # allow "email:secret,email2:secret2" convenience format
-            try:
-                pairs = re.split(r"[;,]\s*", SECRET_MAP_JSON.strip())
-                for p in pairs:
-                    if not p:
-                        continue
-                    if ":" in p:
-                        e, s = p.split(":", 1)
-                        if e.strip() == email and s.strip() == secret:
-                            return True
-            except Exception:
-                pass
-        return False
-    if SECRET_KEY:
-        return secret == SECRET_KEY
-    # default: disallow if nothing configured
-    return False
+    return SECRET_KEY and secret == SECRET_KEY
+
 
 def extract_json_from_html(html: str) -> Optional[Dict[str, Any]]:
     soup = BeautifulSoup(html or "", "html.parser")
